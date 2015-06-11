@@ -209,3 +209,53 @@ ORM Configuration
 ```
 
 # PERFORMANCE TESTS
+`Performance of Select (strongly typed)`
+
+<table>
+  <tr>
+  	<th>Method</th>
+    <th>Duration</th>
+    <th>Count</th>	
+	</tr>
+	<tr>
+		<td><code>ToList()</code></td>
+		<td>116ms</td>
+		<td>500</td>
+	</tr>
+		<tr>
+		<td><code>Where(o => o.ShipVia == 3 && o.RequiredDate > DateTime.Parse("1996-09-01"))</code></td>
+		<td>130ms</td>
+		<td>246</td>
+	</tr>
+	<tr>
+		<td><code>Where(o => o.ShipName.Contains("al"))</code></td>
+		<td>95ms</td>
+		<td>87</td>
+	</tr>
+</table>
+
+`Performance of Select (non-typed DBDataReader)`
+
+<table>
+  <tr>
+  	<th>Method</th>
+	<th>Duration</th>
+		<th>Count</th>	
+	</tr>
+	<tr>
+		<td><code>ExecuteCustomQuery</code></td>
+		<td>76ms</td>
+		<td>500</td>
+	</tr>
+		<tr>
+		<td><code>ExecuteCustomQuery("SELECT * FROM Orders WHERE ShipVia = 3 AND RequiredDate > '1996-09-01'")</code></td>
+		<td>80ms</td>
+		<td>246</td>
+	</tr>
+		</tr>
+		<tr>
+		<td><code>ExecuteCustomQuery("SELECT * FROM Orders WHERE ShipName LIKE '%al%'")</code></td>
+		<td>78ms</td>
+		<td>87</td>
+	</tr>
+</table>
