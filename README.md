@@ -207,3 +207,5 @@ ORM Configuration
                     transaction.Rollback();
             }
 ```
+
+# PERFORMANCE TESTS
