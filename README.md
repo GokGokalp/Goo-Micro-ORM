@@ -12,8 +12,12 @@ Goo Micro ORM .Net için geliştirilmiş typed ve non-typed destekli, code-first
 
 # USAGE
 Goo Micro ORM'i projenize ekleyip ilgili connection ayarlarını tanımladıktan sonra kendi modelinizi oluşturmaya hemen başlayabilirsiniz.
-Typed desteğini kullanabilmeniz için kendi entitylerinizi ModelBase soyut sınıfından türeterek ve propertyleri veritabanı tarafında eşleyebilmek için ilgili attribute ler ile işaretlemeniz yeterlidir.
-Attribute'lerin kullanım detaylarına UnitTest projesindeki Entities klasörünün içindeki entityler üzerinden erişebilirsiniz.
+
+`Typed desteğini kullanabilmeniz için:`
+* Kendi entitylerinizi ModelBase soyut sınıfından türetin.
+
+`Propertyleri veritabanı tarafında eşleyebilmek için:`
+* Entitylerinizi ilgili type attributeleri ile işaretleyin.
 
 Categories entitysi için örnek bir model tanımlaması:
 
@@ -69,7 +73,7 @@ dbInitializerManager.CreateOrAlterTable<Categories>();
 dbInitializerManager.TruncateTable<Categories>();
 ```
 
-CUD Operations
+CRUD Operations
 --------------
 `Using the GooContext class you can perform basic operations like insert/update or delete an entity.`
 
