@@ -1,10 +1,10 @@
-Goo Micro ORM 1.0 .Net için geliştirilmiş typed ve non-typed destekli, code-first yaklaşımlı basit bir object mapper ve veritabanı yönetim aracıdır.
+Goo Micro ORM .Net için geliştirilmiş typed ve non-typed destekli, code-first yaklaşımlı basit bir object mapper ve veritabanı yönetim aracıdır.
 
-# Version 1.0 SUPPORTS
-* Şuanlık MSSQL veritabanını desteklemektedir.
-* Veritabanı modelinizi code-first yaklaşımı ile oluşturmanıza olanak sağlamaktadır.
+# SUPPORTS
+* Şuan sadece MSSQL veritabanını desteklemektedir.
+* Veri modelinizi code-first yaklaşımı ile oluşturmanıza olanak sağlamaktadır.
 * Basit tablo işlemlerini gerçekleştirebilmenizi sağlamaktadır.
-* Listeleme işlemlerini typed bir şekilde yapabilmenizi sağlamaktadır.
+* Listeleme işlemlerini type destekli bir şekilde yapabilmenizi sağlamaktadır.
 * LINQ kullanımına olanak sağlamaktadır.
 * Caching işlemlerini desteklemektedir.
 * Transaction işlemlerini desteklemektedir.
