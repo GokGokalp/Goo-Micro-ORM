@@ -11,7 +11,7 @@ Goo Micro ORM .Net için geliştirilmiş typed ve non-typed destekli, code-first
 * Custom kompleks query yazabilmeye olanak sağlamaktadır.
 
 # USAGE
-Goo ORM'i projenize ekleyip ilgili connection string'i tanımladıktan sonra kendi modelinizi oluşturmaya hemen başlayabilirsiniz.
+Goo Micro ORM'i projenize ekleyip ilgili connection ayarlarını tanımladıktan sonra kendi modelinizi oluşturmaya hemen başlayabilirsiniz.
 Typed desteğini kullanabilmeniz için kendi entitylerinizi ModelBase soyut sınıfından türeterek ve propertyleri veritabanı tarafında eşleyebilmek için ilgili attribute ler ile işaretlemeniz yeterlidir.
 Attribute'lerin kullanım detaylarına UnitTest projesindeki Entities klasörünün içindeki entityler üzerinden erişebilirsiniz.
 
@@ -44,7 +44,7 @@ namespace Goo.UnitTest.Entities
 }
 ```
 
-`Desteklediği tipler: BOOLEAN, DATETIME, DECIMAL, IMAGE, INT, IsAutoIncrement, IsForeignKey, IsPrimaryKey, IsRelationEntity, MONEY, NCHAR, NONCLUSTEREDINDEX, NOTNULL, NTEXT, NULL, NVARCHAR, SMALLINT, TINYINT, VARCHAR`
+`Desteklenen tipler: BOOLEAN, DATETIME, DECIMAL, IMAGE, INT, IsAutoIncrement, IsForeignKey, IsPrimaryKey, IsRelationEntity, MONEY, NCHAR, NONCLUSTEREDINDEX, NOTNULL, NTEXT, NULL, NVARCHAR, SMALLINT, TINYINT, VARCHAR`
 
 
 Database initialization
