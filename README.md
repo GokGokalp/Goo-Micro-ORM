@@ -1,4 +1,4 @@
-Goo Micro ORM .Net için geliştirilmiş typed ve non-typed destekli, code-first yaklaşımlı basit bir orm aracıdır.
+Goo Micro ORM .Net için geliştirilmiş typed ve non-typed destekli, code-first yaklaşımlı basit bir open-source orm aracıdır.
 
 # SUPPORTS
 * Şuan sadece MSSQL veritabanını desteklemektedir.
@@ -11,7 +11,7 @@ Goo Micro ORM .Net için geliştirilmiş typed ve non-typed destekli, code-first
 * Custom kompleks query yazabilmeye olanak sağlamaktadır.
 
 # USAGE
-Goo Micro ORM'i projenize ekleyip ilgili connection ayarlarını tanımladıktan sonra kendi modelinizi oluşturmaya hemen başlayabilirsiniz.
+Goo Micro ORM'i projenize ekleyip ilgili connection ayarlarını tanımladıktan sonra kendi modelinizi oluşturmaya hemen başlayabilirsiniz. UnitTest ortamı için “GooNorthwind.sql” script’ini çalıştırmanız yeterlidir.
 
 `Typed desteğini kullanabilmeniz için:`
 * Kendi entitylerinizi ModelBase soyut sınıfından türetin.
@@ -175,7 +175,7 @@ ORM Configuration
 ```csharp
             GooContex gooContext = new GooContext();
             
-            /// Lazy loading is enabled, related objects are loaded when they are accessed through a navigation property. (false as default)
+            // Lazy loading is enabled, related objects are loaded when they are accessed through a navigation property. (false as default)
             gooContext.OrmConfiguration.LazyLoadingEnabled = true;
 
             Orders order = gooContext.Orders.FirstOrDefault();
