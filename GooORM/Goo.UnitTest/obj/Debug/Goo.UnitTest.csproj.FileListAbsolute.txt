@@ -1,0 +1,8 @@
+C:\Users\Gökhan\Documents\Visual Studio 2015\Projects\GooORM\Goo.UnitTest\bin\Debug\Goo.UnitTest.dll.config
+C:\Users\Gökhan\Documents\Visual Studio 2015\Projects\GooORM\Goo.UnitTest\bin\Debug\Goo.UnitTest.dll
+C:\Users\Gökhan\Documents\Visual Studio 2015\Projects\GooORM\Goo.UnitTest\bin\Debug\Goo.UnitTest.pdb
+C:\Users\Gökhan\Documents\Visual Studio 2015\Projects\GooORM\Goo.UnitTest\bin\Debug\Goo.dll
+C:\Users\Gökhan\Documents\Visual Studio 2015\Projects\GooORM\Goo.UnitTest\bin\Debug\Goo.pdb
+C:\Users\Gökhan\Documents\Visual Studio 2015\Projects\GooORM\Goo.UnitTest\obj\Debug\Goo.UnitTest.csprojResolveAssemblyReference.cache
+C:\Users\Gökhan\Documents\Visual Studio 2015\Projects\GooORM\Goo.UnitTest\obj\Debug\Goo.UnitTest.dll
+C:\Users\Gökhan\Documents\Visual Studio 2015\Projects\GooORM\Goo.UnitTest\obj\Debug\Goo.UnitTest.pdb

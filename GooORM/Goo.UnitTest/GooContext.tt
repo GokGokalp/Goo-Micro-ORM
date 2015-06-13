@@ -1,0 +1,41 @@
+﻿<#@ template debug="true" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)Goo\bin\$(ConfigurationName)\Goo.dll" #> <# // YOUR INFRASTRUCTURE LAYER PATH #>
+<#@ assembly name="$(SolutionDir)Goo.UnitTest\bin\$(ConfigurationName)\Goo.UnitTest.dll" #> <# // YOUR MODEL LAYER PATH #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Reflection" #>
+<#@ import namespace="Goo.OrmCore" #>
+<#@ output extension=".cs" #>
+using Goo.OrmCore;
+using Goo.UnitTest.Entities;
+
+namespace Goo.UnitTest
+{
+public partial class GooContext : DBContextBase
+	{
+<#
+List<object> implementedEntities = (from assembly in AppDomain.CurrentDomain.GetAssemblies()
+from type in assembly.GetTypes()
+where type.IsSubclassOf(typeof(ModelBase)) && type.GetConstructor(Type.EmptyTypes) != null
+select Activator.CreateInstance(type)).ToList();
+#> 
+<#
+foreach (var loopEntity in implementedEntities)
+{
+Type typeEntity = loopEntity.GetType();
+#>
+        public DBProviderBase<<#= typeEntity.Name #>> <#= typeEntity.Name #>
+        {
+            get
+            {
+                return DBProviderFactory<<#= typeEntity.Name #>>.GetDbProvider(base.OrmConfiguration);
+            }
+        }
+<#
+	}
+#>
+	}
+}

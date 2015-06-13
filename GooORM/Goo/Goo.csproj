@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{53667E82-3D41-4424-B5C2-7F29992871A2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Goo</RootNamespace>
+    <AssemblyName>Goo</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\BOOLEAN.cs" />
+    <Compile Include="Attributes\DATETIME.cs" />
+    <Compile Include="Attributes\DECIMAL.cs" />
+    <Compile Include="Attributes\IMAGE.cs" />
+    <Compile Include="Attributes\INT.cs" />
+    <Compile Include="Attributes\IsAutoIncrement.cs" />
+    <Compile Include="Attributes\IsForeignKey.cs" />
+    <Compile Include="Attributes\IsPrimaryKey.cs" />
+    <Compile Include="Attributes\IsRelationEntity.cs" />
+    <Compile Include="Attributes\MONEY.cs" />
+    <Compile Include="Attributes\NCHAR.cs" />
+    <Compile Include="Attributes\NONCLUSTEREDINDEX.cs" />
+    <Compile Include="Attributes\NOTNULL.cs" />
+    <Compile Include="Attributes\NTEXT.cs" />
+    <Compile Include="Attributes\NULL.cs" />
+    <Compile Include="Attributes\NVARCHAR.cs" />
+    <Compile Include="Attributes\SMALLINT.cs" />
+    <Compile Include="Attributes\TINYINT.cs" />
+    <Compile Include="Attributes\VARCHAR.cs" />
+    <Compile Include="CacheManagement\CacheManager.cs" />
+    <Compile Include="CacheManagement\ConcreteCaches\MemoryCache.cs" />
+    <Compile Include="CacheManagement\ICache.cs" />
+    <Compile Include="CacheManagement\Interfaces\CacheBase.cs" />
+    <Compile Include="CacheManagement\TimedCacheKey.cs" />
+    <Compile Include="ConfigurationManagement\ConcreteConfigurationReaders\AppConfigurationReader.cs" />
+    <Compile Include="ConfigurationManagement\ConfigurationFactory.cs" />
+    <Compile Include="ConfigurationManagement\ConfigurationManagementManager.cs" />
+    <Compile Include="ConfigurationManagement\Interfaces\ConfigurationBase.cs" />
+    <Compile Include="Disposable.cs" />
+    <Compile Include="Helpers\OrmHelper.cs" />
+    <Compile Include="OrmConfiguration.cs" />
+    <Compile Include="OrmCore\DBProviders\ConcreteDBProviders\MSSQLServerProvider.cs" />
+    <Compile Include="OrmCore\DBProviders\DBProviderFactory.cs" />
+    <Compile Include="OrmCore\DBProviders\Interfaces\DBContextBase.cs" />
+    <Compile Include="OrmCore\DBProviders\Interfaces\DBProviderBase.cs" />
+    <Compile Include="OrmCore\DBProviders\Interfaces\IDBTableCreationable.cs" />
+    <Compile Include="OrmCore\DBProviders\Interfaces\ModelBase.cs" />
+    <Compile Include="OrmCore\Managers\DBInitializerManager.cs" />
+    <Compile Include="OrmCore\Managers\DBManager.cs" />
+    <Compile Include="OrmCore\QueryTranslators\ConcreteQueryTranslator\MSSQLServerProviderQueryTranslator.cs" />
+    <Compile Include="OrmCore\QueryTranslators\QueryEvaluator\Evaluator.cs" />
+    <Compile Include="OrmCore\QueryTranslators\QueryEvaluator\QueryTranslator.cs" />
+    <Compile Include="OrmCore\QueryTranslators\QueryTranslatorBase.cs" />
+    <Compile Include="OrmCore\QueryTranslators\QueryTranslatorFactory.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

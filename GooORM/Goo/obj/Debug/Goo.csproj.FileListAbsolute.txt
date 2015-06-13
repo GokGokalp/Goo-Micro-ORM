@@ -1,0 +1,5 @@
+C:\Users\Gökhan\Documents\Visual Studio 2015\Projects\GooORM\Goo\bin\Debug\Goo.dll
+C:\Users\Gökhan\Documents\Visual Studio 2015\Projects\GooORM\Goo\bin\Debug\Goo.pdb
+C:\Users\Gökhan\Documents\Visual Studio 2015\Projects\GooORM\Goo\obj\Debug\Goo.csprojResolveAssemblyReference.cache
+C:\Users\Gökhan\Documents\Visual Studio 2015\Projects\GooORM\Goo\obj\Debug\Goo.dll
+C:\Users\Gökhan\Documents\Visual Studio 2015\Projects\GooORM\Goo\obj\Debug\Goo.pdb
