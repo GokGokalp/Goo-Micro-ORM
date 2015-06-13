@@ -1,25 +1,28 @@
-Goo Micro ORM .Net için geliştirilmiş typed ve non-typed destekli, code-first yaklaşımlı basit bir open-source orm aracıdır.
+Goo is a basic, open source Micro ORM tool which supports strongly typed entities and code-first approach.
 
 # SUPPORTS
-* Şuan sadece MSSQL veritabanını desteklemektedir.
-* Veri modelinizi code-first yaklaşımı ile oluşturmanıza olanak sağlamaktadır.
-* Basit tablo işlemlerini gerçekleştirebilmenizi sağlamaktadır.
-* Listeleme işlemlerini type destekli bir şekilde yapabilmenizi sağlamaktadır.
-* LINQ kullanımına olanak sağlamaktadır.
-* Caching işlemlerini desteklemektedir.
-* Transaction işlemlerini desteklemektedir.
-* Custom kompleks query yazabilmeye olanak sağlamaktadır.
+It;
+* Supports only the MSSQL right now (more to come)
+* Allows you to create your data model using code-first approach 
+* Allows you to perform basic database operations (CRUD)
+* Perform list operations in a strongly-typed manner
+* Supports LINQ
+* Supports caching
+* Supports transaction management
+* Provides you with the ability to execute inline queries
 
 # USAGE
-Goo Micro ORM'i projenize ekleyip ilgili connection ayarlarını tanımladıktan sonra kendi modelinizi oluşturmaya hemen başlayabilirsiniz. UnitTest ortamı için “GooNorthwind.sql” script’ini çalıştırmanız yeterlidir.
+After referencing Goo Micro ORM in your project and configuring database connection properties, you can immediately start creating your own model. For the unit test environment, it's sufficient to execute the GooNorthwind.sql script in your MSSQL database
 
-`Typed desteğini kullanabilmeniz için:`
-* Kendi entitylerinizi ModelBase soyut sınıfından türetin.
+`For the typed object support:`
+* Inherit your entities from the ModelBase abstract class.
+* To let the GooContext class be generated you need to update "YOUR INFRASTRUCTURE LAYER PATH" and "YOUR MODEL LAYER PATH" fields in GooContext.tt
+* You need to put the GooContext.tt class in the same place as your model layer/files.
 
-`Propertyleri veritabanı tarafında eşleyebilmek için:`
-* Entitylerinizi ilgili type attributeleri ile işaretleyin.
+`To match properties with the database columns:`
+* Mark your entities with the appropriate attributes.
 
-Categories entitysi için örnek bir model tanımlaması:
+An example for the Categories entity:
 
 ```csharp
 using Goo.Attributes;
@@ -48,12 +51,12 @@ namespace Goo.UnitTest.Entities
 }
 ```
 
-`Desteklenen tipler: BOOLEAN, DATETIME, DECIMAL, IMAGE, INT, IsAutoIncrement, IsForeignKey, IsPrimaryKey, IsRelationEntity, MONEY, NCHAR, NONCLUSTEREDINDEX, NOTNULL, NTEXT, NULL, NVARCHAR, SMALLINT, TINYINT, VARCHAR`
+`Supported types: BOOLEAN, DATETIME, DECIMAL, IMAGE, INT, IsAutoIncrement, IsForeignKey, IsPrimaryKey, IsRelationEntity, MONEY, NCHAR, NONCLUSTEREDINDEX, NOTNULL, NTEXT, NULL, NVARCHAR, SMALLINT, TINYINT, VARCHAR`
 
 
 Database initialization
 -----------------------
-`Entitylerinizi ModelBase soyut sınıfından türeterek oluşturduktan sonra projeyi derlediğinizde GooORM size GooContext wrapper sınıfını oluşturacaktır.`
+`After inheriting your entities from ModelBase abstract class and building the project Goo Micro ORM will provide you with a GooContext wrapper class`
 
 ```csharp
 DBInitializerManager dbInitializerManager = DBInitializerManager.getInstance;
@@ -63,7 +66,7 @@ dbInitializerManager.InitializeDatabase<GooContext>();
 
 Create/Alter/Drop/Truncate table operations
 -------------------------------------------
-`Tablo üzerindeki işlemlerinizi kolaylıkla DBInitializerManager üzerinden gerçekleştirebilirsiniz.`
+`You can perform database-level operations easily using the DBInitializerManager class.`
 
 ```csharp
 DBInitializerManager dbInitializerManager = DBInitializerManager.getInstance;
@@ -117,7 +120,7 @@ CRUD Operations
 
 Read Operations
 ---------------
-`GooContext sınıfı üzerinden listeleme, getirme ve önbelleğe ekleme gibi işlemleri yapabilirsiniz.`
+`You can perform list, retrieve and cache operations with the GooContext class.`
 
 `FirstOrDefault:`
 ```csharp
