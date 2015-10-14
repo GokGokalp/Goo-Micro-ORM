@@ -4,6 +4,9 @@ using Goo.UnitTest.Entities;
 using System;
 using Goo.CacheManagement;
 
+using SqlParams = System.Data.SqlClient.SqlParameter;
+using CommandTypes = System.Data.CommandType;
+
 namespace Goo.UnitTest.Tests
 {
     /// <summary>
@@ -99,6 +102,68 @@ namespace Goo.UnitTest.Tests
                                                          WHERE ShipCountry = @ShipCountry AND ShipVia = @ShipVia", new { ShipCountry = "Brazil", ShipVia = "3" });
 
             Assert.IsTrue(orders.HasRows);
+        }
+
+        /// <summary>
+        /// Bu metod kendi insert update delete sorgularınızı CommandType ' ı Text olarak oluşturabilmenizi sağlar.
+        /// </summary>
+        [TestMethod]
+        public void CustomInlineNonQuery()
+        {
+            var act = gooContext.ExecuteCustomNonQuery(query: @"Insert Into Categories(CategoryName,[Description]) Values ('Example','Example Description')", commandType: CommandTypes.Text);
+            var expected = act > 0;
+
+            Assert.IsTrue(expected);
+        }
+
+        /// <summary>
+        /// Bu metod kendi insert update delete sorgularınızı parametreler ile ve CommandType ' ı Text olarak oluşturabilmenizi sağlar.
+        /// </summary>
+        [TestMethod]
+        public void CustomInlineNonQueryWithParameters()
+        {
+            var sqlParameters = new SqlParams[2];
+            {
+                sqlParameters[0] = new SqlParams(parameterName: "@catName", value: "Example");
+                sqlParameters[1] = new SqlParams(parameterName: "@desc", value: "Example Description");
+            }
+
+            var act = gooContext.ExecuteCustomNonQuery(query: @"Insert Into Categories(CategoryName,[Description]) Values ('@catName','@desc')", commandType: CommandTypes.Text, sqlParameters: sqlParameters);
+            var expected = act > 0;
+
+            Assert.IsTrue(expected);
+        }
+
+        /// <summary>
+        /// Bu metot kendi insert update delete sorgularınızı parametreler ile ve CommandType'ı StoreProcedure olarak oluşturabilmenizi sağlar
+        /// not bu testi geçebilmeniz için aşağıdaki SP orneğini local üzerinden execute etmeniz gerekir.
+        /// </summary>
+        /// 
+
+        //Create Procedure Insert_Categories(
+        //    @catName NVARCHAR(15),
+        //    @desc NTEXT
+        //)
+        //As
+        //Begin
+        //Insert Into Categories (CategoryName,[Description]) Values (
+        //    @catName,
+        //    @desc
+        //)
+        //End
+        [TestMethod]
+        public void CustomInlineNonQueryCommandTypeSPWithParameters()
+        {
+            var sqlParameters = new SqlParams[2];
+            {
+                sqlParameters[0] = new SqlParams(parameterName: "@catName", value: "Example");
+                sqlParameters[1] = new SqlParams(parameterName: "@desc", value: "Example Description");
+            }
+
+            var act = gooContext.ExecuteCustomNonQuery(query: "Insert_Categories", commandType: CommandTypes.StoredProcedure, sqlParameters: sqlParameters);
+            var expected = act > 0;
+
+            Assert.IsTrue(expected);
         }
 
         /// <summary>
