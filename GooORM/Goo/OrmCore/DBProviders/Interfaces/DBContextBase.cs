@@ -47,6 +47,29 @@ namespace Goo.OrmCore
         }
 
         /// <summary>
+        /// Bu metod kendi kompleks Insert Update  Delete sorgularınızı Stored Procedure , Table Direct , Text olarak oluşturabilmenizi sağlar.
+        /// Not Parametre olarak "SqlParameter" array tipi params key ile işaretlendiği için optional olarak argüman geçilmeyebilir.
+        /// </summary>
+        /// <param name="query">Query statement.</param>
+        /// <param name="commandType">Command Object Type.</param>
+        /// <param name="sqlParameter">SqlParameters.</param>
+        /// <returns>Number of Rows Affected.</returns>
+        public int ExecuteCustomNonQuery(string query, System.Data.CommandType commandType, params System.Data.SqlClient.SqlParameter[] sqlParameters)
+        {
+            var dbManager = new DBManager(OrmConfiguration);
+            var cmd = dbManager.CreateCommand(query);
+
+            //We set the command type cmd object
+            {
+                cmd.CommandType = commandType; // SP // Table Direct // Text
+            }
+
+            cmd.Parameters.AddRange(sqlParameters);
+
+            return dbManager.ExecuteNonQuery();
+        }
+
+        /// <summary>
         /// Ekleme, silme veya güncelleme gibi yapılmış olan işlemleri, veritabanında uygulamayı sağlar.
         /// Allows you to perform insert, delete or update operations on the database.
         /// </summary>
