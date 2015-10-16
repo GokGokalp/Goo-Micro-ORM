@@ -47,6 +47,27 @@ namespace Goo.OrmCore
         }
 
         /// <summary>
+        /// Bu metot kendi komplex sorgularınızı "CommandTpe" tipinde bir argüman alarak sorgunuzu StoredProcedure Table Direct veya Text olarak oluşturabilmenizi sağlar.
+        /// Not SqlParameter Array tipi params key ile işaretlendiği için optional argüman olarak geçilmeyebilir.
+        /// </summary>
+        /// <param name="query">Query statement.</param>
+        /// <param name="commandType">Command Type.</param>
+        /// <param name="sqlParameters">SqlParameter Query Parameters.</param>
+        /// <returns>Number of Rows Affected.</returns>
+        public int ExecuteCustomNonQuery(string query, System.Data.CommandType commandType, params System.Data.SqlClient.SqlParameter[] sqlParameters)
+        {
+            var dbManager = new DBManager(OrmConfiguration);
+
+            dbManager.CreateCommand(query, commandType);
+
+            dbManager.AddParameter(sqlParameters);
+
+            var result = dbManager.ExecuteNonQuery();
+
+            return result;
+        }
+
+        /// <summary>
         /// Ekleme, silme veya güncelleme gibi yapılmış olan işlemleri, veritabanında uygulamayı sağlar.
         /// Allows you to perform insert, delete or update operations on the database.
         /// </summary>
