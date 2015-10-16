@@ -102,6 +102,78 @@ namespace Goo.UnitTest.Tests
         }
 
         /// <summary>
+        /// Bu metot kendi kompleks sorgularınızı Stored Procedure Table Direct veya Text olarak Insert,Update,Delete gibi işlemlere destekli sekilde parametresiz olarak oluşturmanızı sağlar.
+        /// </summary>
+        [TestMethod]
+        public void CustomInlineNonQuery()
+        {
+            var act = gooContext.ExecuteCustomNonQuery(query: "Insert Into Categories (CategoryName,[Description]) Values ('Example','Example-Description')", commandType: System.Data.CommandType.Text);
+            var expected = act > 0;
+
+            Assert.IsTrue(expected);
+        }
+
+        /// <summary>
+        /// Bu metot kendi kompleks sorgularınızı Stored Procedure Table Direct veya Text olarak Insert,Update,Delete gibi işlemlere destekli sekilde parametreli olarak oluşturmanızı sağlar.
+        /// </summary>
+        [TestMethod]
+        public void CustomInlineNonQueryWithParameter()
+        {
+            var sqlParameters = new System.Data.SqlClient.SqlParameter[2];
+            {
+                sqlParameters[0] = new System.Data.SqlClient.SqlParameter("@catName", "Example");
+                sqlParameters[1] = new System.Data.SqlClient.SqlParameter("@description", "Example-Description");
+            }
+
+            var act = gooContext.ExecuteCustomNonQuery(query: "Insert Into Categories (CategoryName,[Description]) Values ('@catName','@description')", commandType: System.Data.CommandType.Text, sqlParameters: sqlParameters);
+            var expected = act > 0;
+
+            Assert.IsTrue(expected);
+        }
+
+        /// <summary>
+        /// Bu metot kendi kompleks sorgularınızı Stored Procedure olarak Insert,Update,Delete gibi işlemlere destekli sekilde parametreli olarak oluşturmanızı sağlar.
+        /// </summary>
+        /// 
+
+
+        ///Bu testi geçebilmeniz için aşağıdaki basit SP örneğini local server ' da execute etmeniz gerekmektedir.
+        ///
+
+
+        //USE [GooNorthwind]
+        //GO
+        //SET ANSI_NULLS ON
+        //GO
+        //SET QUOTED_IDENTIFIER ON
+        //GO
+        //ALTER Procedure [dbo].[Insert_Categories](
+        //    @catName NVARCHAR(15),
+        //    @desc NTEXT
+        //)
+        //As
+        //Begin
+        //Insert Into Categories (CategoryName,[Description]) Values (
+        //    @catName,
+        //    @desc
+        //)
+        //End
+        [TestMethod]
+        public void CustomInlineNonQueryStoredProcedureWithParameter()
+        {
+            var sqlParameters = new System.Data.SqlClient.SqlParameter[2];
+            {
+                sqlParameters[0] = new System.Data.SqlClient.SqlParameter("@catName", "Example");
+                sqlParameters[1] = new System.Data.SqlClient.SqlParameter("@desc", "Example-Description");
+            }
+
+            var act = gooContext.ExecuteCustomNonQuery(query: "Insert_Categories", commandType: System.Data.CommandType.StoredProcedure, sqlParameters: sqlParameters);
+            var expected = act > 0;
+
+            Assert.IsTrue(expected);
+        }
+
+        /// <summary>
         /// AddToCache ve GetFromCache metotları size in memory olarak nesneyi önbellekte tutma ve getirme işlemleri yapabilmenizi sağlar.
         /// The AddToCache and GetFromCache methods perform caching operations.
         /// </summary>
