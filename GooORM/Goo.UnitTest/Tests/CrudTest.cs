@@ -156,7 +156,7 @@ namespace Goo.UnitTest.Tests
             var q = "Insert Into Categories(CategoryName) Values ('Example')";
             var res = this.gooContext.ExecuteNonCustomQuery(query: q, commandType: System.Data.CommandType.Text);
 
-            var actual = res;
+           
             var expected = res > 0;
 
             Assert.IsTrue(expected);
@@ -192,7 +192,6 @@ namespace Goo.UnitTest.Tests
 
             var res = this.gooContext.ExecuteNonCustomQuery(query: spName, commandType: System.Data.CommandType.StoredProcedure, sqlParams: sqlParams);
 
-            var actual = res;
             var expected = res > 0;
 
             Assert.IsTrue(expected);
