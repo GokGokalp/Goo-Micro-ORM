@@ -146,6 +146,58 @@ namespace Goo.UnitTest.Tests
 
             Assert.AreNotEqual(result, -1);
         }
+
+        /// <summary>
+        /// Bu metot Insert sorgusunu CommandType ' ı text olarak çalıştırır.
+        /// </summary>
+        [TestMethod]
+        public void CustomExecuteNonQueryForText()
+        {
+            var q = "Insert Into Categories(CategoryName) Values ('Example')";
+            var res = this.gooContext.ExecuteNonCustomQuery(query: q, commandType: System.Data.CommandType.Text);
+
+            var actual = res;
+            var expected = res > 0;
+
+            Assert.IsTrue(expected);
+        }
+
+        /// <summary>
+        /// Bu metot Insert sorgusunu CommandType ' ı StoreProcedure olarak parametreli bir şekilde çalıştırır.
+        /// Not Bu testi geçebilmeniz için aşağıdaki SP ' i local server'da execute etmeniz gerekmektedir.
+        /// </summary>
+        /// 
+
+        //Create Procedure Insert_Categories(
+        //@catName NVARCHAR(15),
+        //@desc NTEXT
+        //)
+        //As
+        //Begin
+        //Insert Into Categories (CategoryName,[Description]) Values (
+        //@catName,
+        //@desc
+        //)
+        //End
+
+        [TestMethod]
+        public void CustomExecuteNonQueryForSp()
+        {
+            var spName = "Insert_Categories";
+            var sqlParams = new System.Data.SqlClient.SqlParameter[2];
+            {
+                sqlParams[0] = new System.Data.SqlClient.SqlParameter("@catName", "Example");
+                sqlParams[1] = new System.Data.SqlClient.SqlParameter("@desc", "Example-Description");
+            }
+
+            var res = this.gooContext.ExecuteNonCustomQuery(query: spName, commandType: System.Data.CommandType.StoredProcedure, sqlParams: sqlParams);
+
+            var actual = res;
+            var expected = res > 0;
+
+            Assert.IsTrue(expected);
+        }
+
         #endregion
     }
 }

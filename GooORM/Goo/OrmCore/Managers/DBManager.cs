@@ -54,6 +54,17 @@ namespace Goo.OrmCore
             return command;
         }
 
+        public DbCommand CreateCommand(string commandText, System.Data.CommandType commandType)
+        {
+            command = _ormConfiguration.Connection.CreateCommand();
+            command.CommandText = commandText;
+            command.Connection = _ormConfiguration.Connection;
+            command.Transaction = _ormConfiguration.Transaction;
+            command.CommandType = commandType;
+
+            return command;
+        }
+
         public void AddParameter<T>(string name, T value)
         {
             if (command != null)
@@ -83,6 +94,12 @@ namespace Goo.OrmCore
             }
             else
                 throw new Exception("DbCommand or parameters object can not be null.");
+        }
+
+        public void AddParameter(System.Data.SqlClient.SqlParameter[] sqlParams)
+        {
+            if (command != null)
+                command.Parameters.AddRange(sqlParams);
         }
 
         public DbDataReader ExecuteReader()
